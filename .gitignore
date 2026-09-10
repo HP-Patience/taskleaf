@@ -6,6 +6,7 @@ Desktop.ini
 .env.*
 !.env.example
 node_modules/
+dist/
 .playwright-mcp/
 test-results/
 playwright-report/

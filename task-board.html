@@ -28,7 +28,7 @@ dialog{padding:0;border:1px solid var(--line);border-radius:8px;width:min(510px,
 <div class="fields two"><div class="field"><label for="due">截止日期</label><input id="due" type="date"></div><div class="field"><label for="tag">标签</label><input id="tag" maxlength="18" placeholder="例如：开发"></div></div></div>
 <div class="actions"><button type="button" class="ghost" id="cancel">取消</button><button class="primary" type="submit">保存任务</button></div></form></dialog>
 <dialog id="confirm" aria-labelledby="confirmTitle"><form class="modal" method="dialog"><div class="mh"><h2 id="confirmTitle">删除任务</h2><button type="button" class="close" id="cx" aria-label="关闭删除确认">×</button></div><p class="muted" id="deleteCopy">确定删除这个任务吗？删除后无法恢复。</p><div class="actions"><button class="ghost" value="cancel" autofocus>取消</button><button class="danger" value="yes">删除任务</button></div></form></dialog>
-<div class="toast" id="toast" role="status" aria-live="polite"></div><script>
+<div class="toast" id="toast" role="status" aria-live="polite"></div><script type="module">
 const cols=[['todo','待处理'],['doing','进行中'],['review','待验收'],['done','已完成']],seed=[{id:'1',title:'整理用户反馈与问题清单',desc:'汇总本周访谈内容，标记高频问题。',pri:'high',who:'林晓',due:'2026-09-12',tag:'研究',st:'todo'},{id:'2',title:'完成看板移动端适配',desc:'检查横向滚动和触控操作。',pri:'medium',who:'陈默',due:'2026-09-14',tag:'开发',st:'doing'},{id:'3',title:'评审上线前验收清单',desc:'确认核心流程、空状态和错误提示。',pri:'medium',who:'周宁',due:'2026-09-11',tag:'验收',st:'review'},{id:'4',title:'发布本周迭代总结',desc:'同步进展、风险与下周计划。',pri:'low',who:'林晓',due:'2026-09-10',tag:'运营',st:'done'}];
 const $ = selector => document.querySelector(selector);
 const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));

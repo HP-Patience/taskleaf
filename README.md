@@ -1,6 +1,12 @@
 # Taskleaf
 
-轻量、无依赖的任务看板。使用 HTML、CSS 和原生 JavaScript 构建，直接在浏览器中运行。
+轻量的本地任务看板。使用 HTML、CSS 和原生 JavaScript 构建，通过 Vite 开发与打包，无运行时框架依赖。
+
+## 界面预览
+
+![Taskleaf 任务看板：四列工作流、优先级与任务操作](docs/images/taskleaf-board.png)
+
+截图使用演示数据，不包含个人任务。
 
 ## 功能
 
@@ -15,15 +21,27 @@
 
 ## 运行
 
-直接使用现代浏览器打开 `task-board.html`，无需安装依赖或构建。
+需要 Node.js 20.19+（20.x）或 22.12+，以及 npm。建议使用 Node.js 24。
 
-也可以在仓库目录运行一个静态服务器（需要 Python 3）：
+在仓库目录安装依赖并启动开发服务器：
 
 ```sh
-python -m http.server 4173
+npm install
+npm run dev
 ```
 
-然后访问 `http://localhost:4173/task-board.html`。
+访问 `http://127.0.0.1:4173/task-board.html`，或打开根地址自动进入看板。
+
+### 构建与预览
+
+```sh
+npm run build
+npm run preview
+```
+
+构建产物位于 `dist/`，预览地址为 `http://127.0.0.1:4174/task-board.html`。部署时将整个 `dist/` 目录上传至静态托管服务；根入口和 `task-board.html` 均保留。
+
+开发端口固定为 4173，端口占用时会明确报错，不会自动切换导致本地数据看似丢失。可以使用 `npm run dev -- --port 5173` 手动换端口，但新端口不会共享原来的任务数据。
 
 ## 数据说明
 
@@ -35,4 +53,8 @@ python -m http.server 4173
 
 ## 文件
 
-`task-board.html` 包含页面结构、样式和交互逻辑，是应用的唯一运行文件。
+- `task-board.html`：页面结构、样式与交互逻辑；Vite 构建时处理内联模块脚本。
+- `index.html`：根地址入口，跳转至看板。
+- `vite.config.js`：开发、预览端口与多页面构建配置。
+- `docs/images/taskleaf-board.png`：README 界面截图。
+- `package-lock.json`：锁定依赖版本；已有锁文件时可使用 `npm ci` 安装。
